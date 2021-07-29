@@ -1,8 +1,16 @@
-function myFunction(){
-    console.log(this);
-}
+// class MyClass{
 
-myFunction();
+//     myMethod(){
+//         console.log('Class:::', this);
+//     }
+// }
+
+// const myInstance = new MyClass();
+
+// myInstance.myMethod();
+
+
+//Object Literal
 
 const myObj={
     myMethod(){
@@ -12,14 +20,15 @@ const myObj={
 
 myObj.myMethod();
 
+// Function
 
-class MyClass{
-
-    myMethod(){
-        console.log('Class:::', this);
-    }
+function myFunction(...text: string[]): any{
+    console.log('Function:::', this, text);
 }
 
-const myInstance = new MyClass();
+const bindFunction = myFunction.bind(myObj, 'ABC', 'DEF');
+bindFunction();
+myFunction().call(myObj,'ABC', 'DEF' );
+myFunction().apply(myObj,['ABC', 'DEF']);
 
-myInstance.myMethod();
+
