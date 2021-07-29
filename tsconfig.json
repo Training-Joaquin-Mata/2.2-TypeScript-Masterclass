@@ -8,7 +8,7 @@
     //"skipLibCheck": true,
      "outDir": "dist",
      "lib": ["dom", "ES6"],
-     "noImplicitAny": true,
-     "noImplicitThis": true,
+    //  "noImplicitAny": true,
+    //  "noImplicitThis": true,
   }
 }
