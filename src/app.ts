@@ -32,20 +32,33 @@
 // myFunction().apply(myObj,['ABC', 'DEF']);
 
 
-class MyClass{
-    myMethod(){
-        const foo =123;
+// class MyClass{
+//     myMethod(){
+//         const foo =123;
 
-        console.log('1', this);
-        setTimeout(()=>{
-            console.log(foo);
-            console.log(this);
-            //lexical scope
-        }, 0)
-    }
+//         console.log('1', this);
+//         setTimeout(()=>{
+//             console.log(foo);
+//             console.log(this);
+//             //lexical scope
+//         }, 0)
+//     }
+// }
+
+
+// const myInstance = new MyClass();
+
+// myInstance.myMethod();
+
+
+const elem = document.querySelector('.click');
+
+function handleClick(this: HTMLAnchorElement, event: Event){
+        event.preventDefault();
+        console.log(this.addEventListener);
 }
 
+elem.addEventListener('click', handleClick, false);
 
-const myInstance = new MyClass();
 
-myInstance.myMethod();
+
