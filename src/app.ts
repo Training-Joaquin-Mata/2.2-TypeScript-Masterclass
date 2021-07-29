@@ -10,25 +10,42 @@
 // myInstance.myMethod();
 
 
-//Object Literal
+// //Object Literal
 
-const myObj={
+// const myObj={
+//     myMethod(){
+//         console.log('Object:::', this);
+//     },
+// }
+
+// myObj.myMethod();
+
+// // Function
+
+// function myFunction(...text: string[]): any{
+//     console.log('Function:::', this, text);
+// }
+
+// const bindFunction = myFunction.bind(myObj, 'ABC', 'DEF');
+// bindFunction();
+// myFunction().call(myObj,'ABC', 'DEF' );
+// myFunction().apply(myObj,['ABC', 'DEF']);
+
+
+class MyClass{
     myMethod(){
-        console.log('Object:::', this);
-    },
+        const foo =123;
+
+        console.log('1', this);
+        setTimeout(()=>{
+            console.log(foo);
+            console.log(this);
+            //lexical scope
+        }, 0)
+    }
 }
 
-myObj.myMethod();
 
-// Function
+const myInstance = new MyClass();
 
-function myFunction(...text: string[]): any{
-    console.log('Function:::', this, text);
-}
-
-const bindFunction = myFunction.bind(myObj, 'ABC', 'DEF');
-bindFunction();
-myFunction().call(myObj,'ABC', 'DEF' );
-myFunction().apply(myObj,['ABC', 'DEF']);
-
-
+myInstance.myMethod();
