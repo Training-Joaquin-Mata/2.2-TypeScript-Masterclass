@@ -1,44 +1,78 @@
-// <----------------------- “typeof” and Type Guards
+// // <----------------------- “typeof” and Type Guards
 
-// function foo(bar: string|number){
-//     // con este if detecta si el parametro bar es string o es number
-//         if(typeof bar === 'string'){
-//                 //STRING    
-//                 return bar.toUpperCase();        
-//         }
-//         if(typeof bar === 'number'){
-//                 //number
-//                 return bar.toFixed(2);
-//         }
+// // function foo(bar: string|number){
+// //     // con este if detecta si el parametro bar es string o es number
+// //         if(typeof bar === 'string'){
+// //                 //STRING    
+// //                 return bar.toUpperCase();        
+// //         }
+// //         if(typeof bar === 'number'){
+// //                 //number
+// //                 return bar.toFixed(2);
+// //         }
+// // }
+
+// class Song{
+
+//     constructor(public title: string, public duration: string| number) {}
+
 // }
 
-class Song{
+// function getSongDuration(item: Song){
+// if(typeof item.duration === 'string'){
+//     return item.duration;
+// }
 
-    constructor(public title: string, public duration: string| number) {}
+// const {duration}= item;
 
+// const minutes = Math.floor(duration / 60000);
+// const seconds = (duration/ 1000) % 60;
+// return `${minutes}:${seconds}`
+
+// }
+
+// const songDurationFromString = getSongDuration(
+//     new Song('Wonderful Wondergul', '05:31')
+// );
+
+// console.log(songDurationFromString)
+
+// const songDurationFromMS = getSongDuration(
+//     new Song('Wonderful Wondergul', 331000)
+// );
+
+// console.log(songDurationFromMS);
+
+// <----------------------- “instanceof” and Type Guards
+
+
+class Song {
+    constructor(public title: string, public duration: number){}
 }
 
-function getSongDuration(item: Song){
-if(typeof item.duration === 'string'){
-    return item.duration;
+class PlayList {
+    constructor(public name: string, public songs: Song[]){}
 }
 
-const {duration}= item;
+function getItemName(item: Song | PlayList){
+    if(item instanceof Song){
+        return item.title;
+    }
 
-const minutes = Math.floor(duration / 60000);
-const seconds = (duration/ 1000) % 60;
-return `${minutes}:${seconds}`
-
+    return item.name;
 }
 
-const songDurationFromString = getSongDuration(
-    new Song('Wonderful Wondergul', '05:31')
-);
 
-console.log(songDurationFromString)
+const songName = getItemName(new Song('Wonderful Wonderful', 300000))
 
-const songDurationFromMS = getSongDuration(
-    new Song('Wonderful Wondergul', 331000)
-);
+console.log(`Name of the song: 
+                ${songName}                
+`);
 
-console.log(songDurationFromMS);
+const playListName = getItemName(
+    new PlayList('The Best Songs', [new Song('The man', 3000000)])
+); 
+
+console.log(`PlayList name:  
+                ${playListName}                
+`);
