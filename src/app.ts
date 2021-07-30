@@ -43,7 +43,41 @@
 
 // console.log(songDurationFromMS);
 
-// <----------------------- “instanceof” and Type Guards
+// // <----------------------- “instanceof” and Type Guards
+
+
+// class Song {
+//     constructor(public title: string, public duration: number){}
+// }
+
+// class PlayList {
+//     constructor(public name: string, public songs: Song[]){}
+// }
+
+// function getItemName(item: Song | PlayList){
+//     if(item instanceof Song){
+//         return item.title;
+//     }
+
+//     return item.name;
+// }
+
+
+// const songName = getItemName(new Song('Wonderful Wonderful', 300000))
+
+// console.log(`Name of the song: 
+//                 ${songName}                
+// `);
+
+// const playListName = getItemName(
+//     new PlayList('The Best Songs', [new Song('The man', 3000000)])
+// ); 
+
+// console.log(`PlayList name:  
+//                 ${playListName}                
+// `);
+
+// <----------------------- User Defined Type Guards
 
 
 class Song {
@@ -54,14 +88,19 @@ class PlayList {
     constructor(public name: string, public songs: Song[]){}
 }
 
+
+//esta nueva funcion solo puede regresar un boolean, esta funcion se usa para comprobar si el tem es de cirtto tipo, y si lo es manda un true
+function isSong(item: any): item is Song{
+    return item instanceof Song;
+}
+
 function getItemName(item: Song | PlayList){
-    if(item instanceof Song){
+    if(isSong(item)){
         return item.title;
     }
 
     return item.name;
 }
-
 
 const songName = getItemName(new Song('Wonderful Wonderful', 300000))
 
