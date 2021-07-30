@@ -74,26 +74,44 @@
 // console.log(age);
 
 
-//<---------------- “Pick” Mapped Type
+// //<---------------- “Pick” Mapped Type
 
-// Es como decirle al compilador que solo estas usando un set especifico de keys
-// Lo que hace pick es regresarnos una seleccion de las propiedades del objeto
+// // Es como decirle al compilador que solo estas usando un set especifico de keys
+// // Lo que hace pick es regresarnos una seleccion de las propiedades del objeto
 
-interface Person{
-    name: string;
-    age: number;
-    address: {}
-};
+// interface Person{
+//     name: string;
+//     age: number;
+//     address: {}
+// };
 
-type MyPick<T, K extends keyof T> = {
-    [P in  K]: T[P]; 
+// type MyPick<T, K extends keyof T> = {
+//     [P in  K]: T[P]; 
+// }
+
+// const person: MyPick<Person, 'name'| 'age' > = {
+//     name: 'Joaquin',
+//     age: 24
+//};
+
+//<---------------- “Record” Mapped Type
+
+
+let dictionary: Record<string, TrackStates> = {};
+
+interface TrackStates{
+    current: string;
+    next: string;
 }
 
-const person: MyPick<Person, 'name'| 'age' > = {
-    name: 'Joaquin',
-    age: 24
+const item: Record< keyof TrackStates, string> = {
+
+    current: 'charmander',
+    next: 'charmeleon'
 };
 
 
-
+//numbers are coerced to string
+dictionary[0]= item;
+console.log(dictionary[0]= item);
 
