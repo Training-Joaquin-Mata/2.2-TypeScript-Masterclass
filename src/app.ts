@@ -1,117 +1,44 @@
-// //<---------------- ReadOnly Mapped Type
-// interface Person{
-//     name: string;
-//     age: number;
-// };
+// <----------------------- “typeof” and Type Guards
 
-// const person: Person = {
-//     name: 'Joaquin',
-//     age: 24
-// };
-
-
-// type MyReadOnly<T>={
-//     readonly[P in keyof T]: T[P];
+// function foo(bar: string|number){
+//     // con este if detecta si el parametro bar es string o es number
+//         if(typeof bar === 'string'){
+//                 //STRING    
+//                 return bar.toUpperCase();        
+//         }
+//         if(typeof bar === 'number'){
+//                 //number
+//                 return bar.toFixed(2);
+//         }
 // }
 
-// function freeze<T>(obj: T): MyReadOnly<T>{
-// return Object.freeze(obj);
-// }
+class Song{
 
-// const newPerson = freeze(person);
+    constructor(public title: string, public duration: string| number) {}
 
-//<---------------- Partial Mapped Type
-
-// // el partial hace que los campos dentro de la interfaz sean opcionales, les agrega el ? 
-// interface Person{
-//     name: string;
-//     age: number;
-// };
-
-// type MyPartial<T> ={
-//     [P in keyof T]?: T[P];
-// }
-
-// function updatePerson(person: Person, prop: MyPartial<Person>){
-//     return {...person, ...prop}
-// }
-
-// const person: Person = {
-//     name: 'Joaquin',
-//     age: 24
-// };
-// console.log(person)
-// const upP=updatePerson(person, {name: 'name', age: 23} );
-// updatePerson(person, {name: 'name', age: 23} );
-
-// console.log(person)
-// console.log(upP);
-
-
-//<---------------- “Required” Mapped Type, +/- Modifiers
-
-
-// // El required hace que los campós que esten dentro de la interfaz sean obligarorios, le quita el ? que los hace opcionales
-
-// interface Person{
-//     name: string;
-//     age?: number;
-// };
-
-
-
-// function printAge(person: Required<Person>){
-//         return `${person.name} is ${person.age}`
-// }
-
-// const person: Required<Person> = {
-//     name: 'Joaquin',
-//     age: 24
-// };
-
-// const age = printAge(person);
-
-// console.log(age);
-
-
-// //<---------------- “Pick” Mapped Type
-
-// // Es como decirle al compilador que solo estas usando un set especifico de keys
-// // Lo que hace pick es regresarnos una seleccion de las propiedades del objeto
-
-// interface Person{
-//     name: string;
-//     age: number;
-//     address: {}
-// };
-
-// type MyPick<T, K extends keyof T> = {
-//     [P in  K]: T[P]; 
-// }
-
-// const person: MyPick<Person, 'name'| 'age' > = {
-//     name: 'Joaquin',
-//     age: 24
-//};
-
-//<---------------- “Record” Mapped Type
-
-
-let dictionary: Record<string, TrackStates> = {};
-
-interface TrackStates{
-    current: string;
-    next: string;
 }
 
-const item: Record< keyof TrackStates, string> = {
+function getSongDuration(item: Song){
+if(typeof item.duration === 'string'){
+    return item.duration;
+}
 
-    current: 'charmander',
-    next: 'charmeleon'
-};
+const {duration}= item;
 
+const minutes = Math.floor(duration / 60000);
+const seconds = (duration/ 1000) % 60;
+return `${minutes}:${seconds}`
 
-//numbers are coerced to string
-dictionary[0]= item;
-console.log(dictionary[0]= item);
+}
 
+const songDurationFromString = getSongDuration(
+    new Song('Wonderful Wondergul', '05:31')
+);
+
+console.log(songDurationFromString)
+
+const songDurationFromMS = getSongDuration(
+    new Song('Wonderful Wondergul', 331000)
+);
+
+console.log(songDurationFromMS);
