@@ -1,52 +1,70 @@
-//<--------------------- Function generics
+// //<--------------------- Function generics
 
-class Pizza{
-    constructor(private name: string, private price: number){
+// class Pizza{
+//     constructor(private name: string, private price: number){
 
-    }
-}
+//     }
+// }
 
-// class List {
-//     private list: any[];
+// // class List {
+// //     private list: any[];
 
-//     addItem(item: any): void{
+// //     addItem(item: any): void{
+// //         this.list.push(item);
+// //     }
+
+// //     getList(): any[]{
+// //         return this.list
+// //     }
+// // }
+// // Al poner el <T> podemos hacer que la lista sea del tipo que querramos, se podria crear en este caso una lista del tipo Pizza
+// class List<T> {
+//     private list: T[];
+
+//     addItem(item: T): void{
 //         this.list.push(item);
 //     }
 
-//     getList(): any[]{
+//     getList(): T[]{
 //         return this.list
 //     }
 // }
-// Al poner el <T> podemos hacer que la lista sea del tipo que querramos, se podria crear en este caso una lista del tipo Pizza
-class List<T> {
-    private list: T[];
 
-    addItem(item: T): void{
-        this.list.push(item);
-    }
+// // esta const va a generar algo del tipo any[]
+// // const list = new List();
 
-    getList(): T[]{
-        return this.list
+// const list = new List<Pizza>();
+
+// list.addItem(new Pizza('Pepproni', 15));
+
+// const pizzas = list.getList();
+
+
+// class Coupon {
+//     constructor(private name: string){
+
+//     }
+// }
+
+// const anotherList = new List<Coupon>();
+
+// anotherList.addItem(new Coupon('PIZZA25'))
+
+//<--------------------- Function overloads
+// aqui podemos declarar los diferentes tipos de argumentos y returns que nos puede mandar
+function reverse(str: string): string;
+// Agregando la funcion anterior de generic
+//function reverse(arr:any[]): any[];
+function reverse<T>(arr:T[]): T[];
+
+function reverse<T>(something: string | T[]): string |T[]{
+    if(typeof something === 'string'){
+        return something.split('').reverse().join('');
     }
+    return something.slice().reverse();
+
 }
 
-// esta const va a generar algo del tipo any[]
-// const list = new List();
+reverse('Pepperoni');
 
-const list = new List<Pizza>();
-
-list.addItem(new Pizza('Pepproni', 15));
-
-const pizzas = list.getList();
-
-
-class Coupon {
-    constructor(private name: string){
-
-    }
-}
-
-const anotherList = new List<Coupon>();
-
-anotherList.addItem(new Coupon('PIZZA25'))
-
+reverse(['Bacon', 'Pepperoni', 'Chilli', 'Mushrooms'])
