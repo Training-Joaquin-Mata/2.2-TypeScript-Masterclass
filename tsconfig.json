@@ -10,5 +10,9 @@
      "lib": ["dom", "ES6"],
     //  "noImplicitAny": true,
     //  "noImplicitThis": true,
+    "typeRoots": [
+      "src/@Types",
+      "node_modules/@types"
+    ]
   }
 }
