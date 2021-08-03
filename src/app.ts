@@ -1,135 +1,52 @@
-// // <-----------------  Intersection Types
-// interface Order{
-//     id: string;
-//     amount: number;
-//     currency: string;
-// }
+//<--------------------- Function generics
 
-// interface Stripe{
-//     card: string;
-//     cvc: string;
-// }
+class Pizza{
+    constructor(private name: string, private price: number){
 
-// interface PayPal{
-//     email: string;
-// }
-
-// type CheckoutCard = Order  & Stripe;
-// type CheckoutPayPal= Order & PayPal;
-// // type CheckoutABC= Order & {name: string .....};
-
-// const order: Order = {
-//     id: 'afcadf',
-//     amount: 100,
-//     currency: 'USD'
-// }
-
-// const orderCard: CheckoutCard= { 
-//    ...order,
-//     card:'1111 2222 3333 4444', 
-//     cvc: '123'
-// }
-
-// const orderPayPal: CheckoutPayPal={
-//     ...order,
-//     email:'something@something.com'
-// }
-
-// // <-----------------  Discriminated (Tagged) Unions
-// interface Order{
-//     id: string;
-//     amount: number;
-//     currency: string;
-// }
-
-// interface Stripe{
-//     type: 'stripe';
-//     card: string;
-//     cvc: string;
-// }
-
-// interface PayPal{
-//     type: 'paypal';
-//     email: string;
-// }
-
-// type CheckoutCard = Order  & Stripe;
-// type CheckoutPayPal= Order & PayPal;
-
-// const order: Order = {
-//     id: 'afcadf',
-//     amount: 100,
-//     currency: 'USD'
-// }
-
-// const orderCard: CheckoutCard= { 
-//    ...order,
-//    type: 'stripe',
-//     card:'1111 2222 3333 4444', 
-//     cvc: '123'
-// }
-
-// const orderPayPal: CheckoutPayPal={
-//     ...order,
-//     type: 'paypal',
-//     email:'something@something.com'
-// }
-
-// // creamops un union type, y despues podemos discriminar cual queremos usar
-
-// type Payload = CheckoutCard | CheckoutPayPal;
-
-// function checkout(payload: Payload){
-
-//     if(payload.type=== 'stripe' ){
-//         console.log(`${payload.card}, ${payload.cvc}`)
-//     }
-//     if(payload.type=== 'paypal' ){
-//         console.log(`${payload.email}}`)
-//     }
-        
-// }
-
-// // <-----------------  Interfaces vs Type Aliases
-
-// interface Item{
-//     name: string;
-// }
-
-// interface Artist extends Item{
-//     songs: number,
-// }
-
-// interface Artist{
-//     getSongs(): number;
-// }
-
-// type Artist2={name: string} & Item;
-
-
-
-// const newArtist: Artist={
-//     name:'abc',
-//     songs:5,
-//     getSongs(){
-//         return this.songs;
-//     }
-// }
-
-// <-----------------  Interfaces vs lasses
-
-// interface Artist{
-//     name: string
-// }
-
-class ArtistCreator /*implements Artist*/{
-    constructor(public name: string){}
+    }
 }
 
-function artistFactory({ name }: ArtistCreator){
+// class List {
+//     private list: any[];
 
-    return new ArtistCreator(name);
+//     addItem(item: any): void{
+//         this.list.push(item);
+//     }
+
+//     getList(): any[]{
+//         return this.list
+//     }
+// }
+// Al poner el <T> podemos hacer que la lista sea del tipo que querramos, se podria crear en este caso una lista del tipo Pizza
+class List<T> {
+    private list: T[];
+
+    addItem(item: T): void{
+        this.list.push(item);
+    }
+
+    getList(): T[]{
+        return this.list
+    }
 }
 
+// esta const va a generar algo del tipo any[]
+// const list = new List();
 
-artistFactory ({name: 'Joaquin'})
+const list = new List<Pizza>();
+
+list.addItem(new Pizza('Pepproni', 15));
+
+const pizzas = list.getList();
+
+
+class Coupon {
+    constructor(private name: string){
+
+    }
+}
+
+const anotherList = new List<Coupon>();
+
+anotherList.addItem(new Coupon('PIZZA25'))
+
