@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+
+    "declaration": true,
+    "declarationDir": "./@types",
     "target": "es5",    //Especifi wich language has to compile                                 
     "module": "commonjs",                               
    // "esModuleInterop": true,                             
