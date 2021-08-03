@@ -1,3 +1,4 @@
-function log(message){}
-
+class Person{
+    name: string = 'Joaquin'
+}
 

@@ -5,11 +5,17 @@
   // "exclude": ["src/**/*.spec.ts"],
   "compilerOptions": {
     "target": "es5",                                 
-    // "module": "commonjs",
-    "module": "system",      
-    "lib": ["dom", "ES6"],
-    "outFile": "dist/bundle",
-    //"outDir": "dist",
+    "module": "commonjs",
+    //"module": "system",      
+     "lib": ["dom", "ES6"],
+     "outDir": "dist",
+    // "outFile": "dist/bundle",
+    // no crea ek aoo,js cuando encuentra un error
+   // "noEmitOnError": true,
    // "noImplicitAny": true,
+  //  "sourceMap": true,
+  //  "inlineSources": true,
+  //  "mapRoot": "/mappings/"
+    "inlineSourceMap": true,
   }
 }
