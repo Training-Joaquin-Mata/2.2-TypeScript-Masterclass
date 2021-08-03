@@ -1,12 +1,13 @@
 {
   /* El orden en el que se ejecutasn es files, includes y exclude, con file compila el archivo que declaras, con includes todos los que quieras y exclude excluye los que quieras*/
-  "files": ["src/app.spec.ts"],
-  "includes":["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"],
+  // "files": ["src/app.spec.ts"],
+  // "includes":["src/**/*.ts"],
+  // "exclude": ["src/**/*.spec.ts"],
   "compilerOptions": {
     "target": "es5",                                 
     "module": "commonjs",      
     "lib": ["dom", "ES6"],
     "outDir": "dist",
+    "noImplicitAny": true,
   }
 }
