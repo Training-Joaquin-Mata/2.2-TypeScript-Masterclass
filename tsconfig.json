@@ -16,6 +16,8 @@
   //  "sourceMap": true,
   //  "inlineSources": true,
   //  "mapRoot": "/mappings/"
-    "inlineSourceMap": true,
+  //  "sourceMap": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
   }
 }
