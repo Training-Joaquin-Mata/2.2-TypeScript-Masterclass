@@ -31,5 +31,10 @@
      // "diagnostics": true,
       "pretty": true,
     //"listEmittedFiles": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+
   }
 }
