@@ -5,5 +5,5 @@
 //    }
 // }
 
-Array.isArray([]);
-Array.from(document.querySelectorAll('*'));
+// Array.isArray([]);
+// Array.from(document.querySelectorAll('*'));
